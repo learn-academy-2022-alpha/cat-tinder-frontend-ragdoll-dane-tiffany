@@ -35,7 +35,7 @@ export class Header extends Component {
           fixed="top"
         >
           <NavbarBrand href="/">
-            barkbuds 🐾
+            <span className='app-title'>barkbuds 🐾</span>
           </NavbarBrand>
           <NavbarToggler onClick={this.toggle} />
           <Collapse isOpen={this.state.collapse} navbar>
