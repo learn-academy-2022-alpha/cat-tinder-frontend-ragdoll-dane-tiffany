@@ -1,25 +1,40 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react'
+import './App.css'
+import mockDogs from './mockDogs'
+import {
+  BrowserRouter as Router,
+  Route,
+  Switch
+} from 'react-router-dom'
+import Header from './components/Header'
+import Footer from './components/Footer'
+import DogEdit from './pages/DogEdit'
+import DogIndex from './pages/DogIndex'
+import DogNew from './pages/DogNew'
+import DogShow from './pages/DogShow'
+import Home from './pages/Home'
+import NotFound from './pages/NotFound'
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+
+
+export class App extends Component {
+  render() {
+    return (
+      <Router>
+        <Header />
+      <Switch>
+        <Route exact path="/" component={Home} />
+        <Route path="/dogindex" component={DogIndex} />
+        <Route path="/dogshow" component={DogShow} />
+        <Route path="/dognew" component={DogNew} />
+        <Route path="/dogedit" component={DogEdit} />
+        <Route component={NotFound}/>
+      </Switch>
+      <Footer />
+    </Router>
+    )
+  }
 }
 
-export default App;
+export default App
