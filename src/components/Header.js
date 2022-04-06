@@ -58,29 +58,6 @@ export class Header extends Component {
                   New Dog
                 </NavLink>
               </NavItem>
-              {/* <UncontrolledDropdown
-                inNavbar
-                nav
-              >
-                <DropdownToggle
-                  caret
-                  nav
-                >
-                  Options
-                </DropdownToggle>
-                <DropdownMenu end>
-                  <DropdownItem>
-                    Option 1
-                  </DropdownItem>
-                  <DropdownItem>
-                    Option 2
-                  </DropdownItem>
-                  <DropdownItem divider />
-                  <DropdownItem>
-                    Reset
-                  </DropdownItem>
-                </DropdownMenu>
-              </UncontrolledDropdown> */}
             </Nav>
             <NavbarText>
               Find Your Dog A Buddy 🦴

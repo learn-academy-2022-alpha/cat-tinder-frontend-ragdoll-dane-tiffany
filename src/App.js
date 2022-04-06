@@ -24,6 +24,13 @@ export class App extends Component {
     }
   }
 
+  createNewDog = (dog) => {
+    console.log('Created a new dog', dog)
+    // this is temporary to show new dogs
+    const dogs = [...this.state.dogs]
+    dog.id = dogs.length + 1
+    this.setState({ dogs: [...dogs, dog] })
+  }
 
   render() {
     return (
@@ -47,7 +54,7 @@ export class App extends Component {
               }}
             />
 
-            <Route path="/dognew" component={DogNew} />
+            <Route path="/dognew" render={(props) => <DogNew createNewDog={this.createNewDog} />} />
 
             <Route path="/dogedit" component={DogEdit} />
 
