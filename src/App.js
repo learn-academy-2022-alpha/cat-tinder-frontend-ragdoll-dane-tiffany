@@ -17,6 +17,14 @@ import Home from './pages/Home'
 import NotFound from './pages/NotFound'
 
 export class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      dogs: mockDogs
+    }
+  }
+
+
   render() {
     return (
       <div id='content'>
@@ -24,10 +32,25 @@ export class App extends Component {
           <Header />
           <Switch>
             <Route exact path="/" component={Home} />
-            <Route path="/dogindex" component={DogIndex} />
-            <Route path="/dogshow" component={DogShow} />
+
+            <Route
+              path="/dogindex"
+              render={(props) => <DogIndex dogs={this.state.dogs} />}
+            />
+
+            <Route
+              path="/dogshow/:id"
+              render={(props) => {
+                let id = props.match.params.id
+                let dog = this.state.dogs.find(dogObj => dogObj.id === +id)
+                return <DogShow dog={dog} />
+              }}
+            />
+
             <Route path="/dognew" component={DogNew} />
+
             <Route path="/dogedit" component={DogEdit} />
+
             <Route component={NotFound} />
           </Switch>
           <Footer />
