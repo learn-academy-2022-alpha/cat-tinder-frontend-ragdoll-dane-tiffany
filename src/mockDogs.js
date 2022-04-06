@@ -1,26 +1,45 @@
 import kai from './assets/kai.jpg'
+import kuma from './assets/kuma.jpg'
+import murphy from './assets/murphy.jpg'
+import sheldon from './assets/sheldon.jpg'
+import apollo from './assets/apollo.jpg'
 
-let dogs = [
+const dogs = [
   {
     id: 1,
-    name: "Clifford",
+    name: 'Kai',
     age: 2,
-    enjoys: "being red and big",
-    image: "https://rochester.kidsoutandabout.com/sites/default/files/styles/970w/public/Clifford%201.jpeg?itok=CD_uywh1&sc=555562867d6dacab2b4b1b90ba69c32f"
-  },
-  {
-    id: 2,
-    name: "Kai",
-    age: 5,
-    enjoys: "enjoys being a menace",
+    enjoys: 'Eating anything on the ground (mostly sticks)',
     image: kai
   },
   {
+    id: 2,
+    name: 'Kuma',
+    age: 11,
+    enjoys: 'Belly rubs',
+    image: kuma
+  },
+  {
     id: 3,
-    name: "Apollo",
+    name: 'Murphy',
+    age: 11,
+    enjoys: 'Sleeping anywhere but his own bed',
+    image: murphy
+  },
+  {
+    id: 4,
+    name: 'Sheldon',
+    age: 3,
+    enjoys: 'Long walks along the creek',
+    image: sheldon
+  },
+  {
+    id: 5,
+    name: 'Apollo',
     age: 4,
-    enjoys: "barking at everything",
-    image: "https://images.unsplash.com/photo-1626736637845-53045bb9695b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=711&q=80"
+    enjoys: 'Only listening when he wants to',
+    image: apollo
   }
 ]
+
 export default dogs
