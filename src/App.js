@@ -33,13 +33,10 @@ export class App extends Component {
           <Switch>
             <Route exact path="/" component={Home} />
 
-
             <Route
               path="/dogindex"
               render={(props) => <DogIndex dogs={this.state.dogs} />}
             />
-
-
 
             <Route
               path="/dogshow/:id"
@@ -50,10 +47,10 @@ export class App extends Component {
               }}
             />
 
-
-
             <Route path="/dognew" component={DogNew} />
+
             <Route path="/dogedit" component={DogEdit} />
+
             <Route component={NotFound} />
           </Switch>
           <Footer />
