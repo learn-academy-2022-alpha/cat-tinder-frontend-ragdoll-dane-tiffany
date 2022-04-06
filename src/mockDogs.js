@@ -1,24 +1,26 @@
+import kai from './assets/kai.jpg'
+
 let dogs = [
-    {
-      id: 1,
-      name: "Clifford",
-      age: 2,
-      enjoys: "being red and big",
-      image: "https://www.istockphoto.com/photo/cute-little-bichon-frise-running-through-house-gm1356225658-430454690?utm_source=unsplash&utm_medium=affiliate&utm_campaign=srp_photos_top&utm_content=https%3A%2F%2Funsplash.com%2Fs%2Fphotos%2Fdogs&utm_term=dogs%3A%3Asearch-explore-top-affiliate-outside-feed%3Aenabled"
-    },
-    {
-      id: 2,
-      name: "Kai",
-      age: 5,
-      enjoys: "enjoys being a menace",
-      image: "https://www.istockphoto.com/photo/rottweiler-gm1064733482-284699827"
-    },
-    {
-      id: 3,
-      name: "Apollo",
-      age: 4,
-      enjoys: "barking at everything",
-      image: "https://www.istockphoto.com/photo/golder-retriever-standing-by-a-rural-fence-gm1181270413-331252223"
-    }
-  ]
-  export default dogs
+  {
+    id: 1,
+    name: "Clifford",
+    age: 2,
+    enjoys: "being red and big",
+    image: "https://rochester.kidsoutandabout.com/sites/default/files/styles/970w/public/Clifford%201.jpeg?itok=CD_uywh1&sc=555562867d6dacab2b4b1b90ba69c32f"
+  },
+  {
+    id: 2,
+    name: "Kai",
+    age: 5,
+    enjoys: "enjoys being a menace",
+    image: kai
+  },
+  {
+    id: 3,
+    name: "Apollo",
+    age: 4,
+    enjoys: "barking at everything",
+    image: "https://images.unsplash.com/photo-1626736637845-53045bb9695b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=711&q=80"
+  }
+]
+export default dogs
