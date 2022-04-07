@@ -16,8 +16,8 @@ describe("When DogShow Renders", () => {
     dogShow = shallow(<DogShow dog={mockDogs[0]} />)
   })
   it("displays a heading", () => {
-    const heading = dogShow.find('h2')
-    expect(heading.text()).toEqual('Meet Me!')
+    const heading = dogShow.find('h1')
+    expect(heading.text()).toEqual('Meet Me')
   })
 
 })

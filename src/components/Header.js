@@ -6,10 +6,6 @@ import {
   NavItem,
   NavLink,
   Nav,
-  DropdownToggle,
-  DropdownMenu,
-  DropdownItem,
-  UncontrolledDropdown,
   NavbarText,
   Navbar
 } from 'reactstrap'

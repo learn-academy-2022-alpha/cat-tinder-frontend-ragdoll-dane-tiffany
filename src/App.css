@@ -1,24 +1,148 @@
-html {
-  background-color: rgb(212, 168, 76);
-  width: 100vw;
-  height: 100vh;
+:root {
+  --navbar-color: rgb(33, 37, 41);
+  --bg-color: rgb(212, 168, 76);
 }
 
-#content {
-  background-color: rgb(212, 168, 76);
-  padding-top: 100px;
-  padding: 100px 20px 20px 20px;
+/* Global */
+html, body, #root {
+  background-color: var(--bg-color);
 }
 
-#copyright {
+.container {
+  padding-left: 0!important;
+  padding-right: 0!important;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 30px!important;
+}
+
+.center {
+  text-align: center;
+  margin: auto;
+}
+
+.text-margin {
+  margin: 10px 0;
+}
+
+.page-content {
+  padding: 100px 0!important;
+}
+
+a, span.navbar-text {
+  color: white!important;
+  text-decoration: none!important;
+}
+
+a:hover {
+  opacity: .6;
+}
+
+/* Profile */
+.profile-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-img {
+  width: 500px;
+  margin-bottom: 10px;
+}
+
+.update-btn {
+  display: flex;
+  justify-content: right;
+  margin: 10px 0;
+}
+
+/* Card */
+.cards-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  width: 400px;
+  margin: 14px;
+  background-color: var(--navbar-color)!important;
+  border: 1px solid var(--navbar-color)!important;
+  position: relative;
+}
+
+.card-header {
+  text-align: center;
+  background-color: var(--navbar-color)!important;
+  color: white;
   position: absolute;
-  bottom: 0%
+  width: 100%;
+  opacity: .6;
 }
 
-a.nav-link, span.navbar-text {
- color: white!important;
+.card-img {
+  width: 100%;
+  height: 20vw;
+  object-fit: cover;
 }
 
+.card-footer {
+  text-align: center;
+  background-color: var(--navbar-color)!important;
+  color: white;
+}
+
+.text-wrapper {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  justify-content: center;
+}
+
+.icon {
+  margin: auto 0 auto 5px;
+  padding: auto 0;
+}
+
+@media screen and (max-width: 1200px) {
+  .card-img {
+    height: 30vw;
+  }
+}
+
+@media screen and (max-width: 1000px) {
+  .card-img {
+    height: 40vw;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .card-img {
+    height: 50vw;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .card-img {
+    height: 60vw;
+  }
+}
+
+/* Form */
+.form {
+  width: 60%;
+  margin: auto;
+  position: relative;
+}
+
+.submit-btn {
+  margin-top: 20px;
+  position: absolute;
+  right: 0;
+}
+
+/* Not Found Page */
 #not-found-img {
   position: absolute;
   top: 0%;
@@ -32,5 +156,11 @@ a.nav-link, span.navbar-text {
 
 .large-font {
   font-size: 100px;
-  background-color: rgb(212, 168, 76);
+  background-color: var(--bg-color);
+}
+
+/* Footer */
+#copyright {
+  position: fixed;
+  bottom: 0%
 }

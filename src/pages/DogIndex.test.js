@@ -14,7 +14,7 @@ describe("When DogIndex Renders", () => {
     dogIndex = shallow(<DogIndex />)
   })
   it("displays a heading", () => {
-    const heading = dogIndex.find('h2')
+    const heading = dogIndex.find('h1')
     expect(heading.text()).toEqual('Meet the Buddies!')
   })
 })

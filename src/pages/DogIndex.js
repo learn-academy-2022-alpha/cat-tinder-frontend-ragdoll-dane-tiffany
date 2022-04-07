@@ -1,16 +1,18 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import CardContainer from '../components/CardContainer'
 
 export class DogIndex extends Component {
   render() {
     return (
       <div>
-        <h2>Meet the Buddies!</h2>
-        {this.props.dogs && this.props.dogs.map(dog => {
-          return (
-            <NavLink to={`/dogshow/${dog.id}`} key={dog.id}> {dog.name}</NavLink>
-          )
-        })}
+        <h1>Meet the Buddies!</h1>
+        <div className='cards-container'>
+          {
+            this.props.dogs && this.props.dogs.map(dog => (
+              <CardContainer key={dog.id} dog={dog} />
+            ))
+          }
+        </div>
       </div>
     )
   }
