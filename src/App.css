@@ -44,8 +44,6 @@ a:hover {
 .profile-content {
   display: flex;
   flex-direction: column;
-  /* width: 100%;
-  margin: auto; */
 }
 
 .profile-img {

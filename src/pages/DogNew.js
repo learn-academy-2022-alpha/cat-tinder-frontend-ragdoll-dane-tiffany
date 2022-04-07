@@ -42,58 +42,7 @@ export class DogNew extends Component {
         {
           this.state.submitted && <Redirect to='/dogindex' />
         }
-        {/* <Form className='form'>
-          <FormGroup>
-            <Label for="name">Name</Label>
-            <Input
-              type="text"
-              name="name"
-              placeholder="What's your dog's name?"
-              onChange={this.handleChange}
-              value={name}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="age">Age</Label>
-            <Input
-              type="number"
-              name="age"
-              placeholder="What's your dog's age?"
-              onChange={this.handleChange}
-              value={age}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="enjoys">Enjoys</Label>
-            <Input
-              type="text"
-              name="enjoys"
-              placeholder="What's does your dog enjoy?"
-              onChange={this.handleChange}
-              value={enjoys}
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="image">Muttshot</Label>
-            <Input
-              type="url"
-              name="image"
-              placeholder="What does your dog look like?"
-              onChange={this.handleChange}
-              value={image}
-            />
-          </FormGroup>
-          <Button
-            color='dark'
-            className='submit-btn'
-            onClick={this.handleSubmit}
-          >
-            Add Your Pup
-          </Button>
-          {
-            this.state.submitted && <Redirect to='/dogindex' />
-          }
-        </Form> */}
+
       </>
     )
   }
