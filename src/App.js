@@ -15,6 +15,7 @@ import DogNew from './pages/DogNew'
 import DogShow from './pages/DogShow'
 import Home from './pages/Home'
 import NotFound from './pages/NotFound'
+import { Container } from 'reactstrap'
 
 export class App extends Component {
   constructor(props) {
@@ -32,11 +33,21 @@ export class App extends Component {
     this.setState({ dogs: [...dogs, dog] })
   }
 
+  updateDog = (dog, id) => {
+    console.log('Updated dog', dog, 'with id:', id)
+    // this is temporary to show that dog updates
+    const { dogs } = this.state
+    const dogIdxToUpdate = dogs.findIndex(dog => dog.id === id)
+    const newDogsArr = [...dogs]
+    newDogsArr.splice(dogIdxToUpdate, 1, { ...dog, id: id })
+    this.setState({ dogs: newDogsArr })
+  }
+
   render() {
     return (
-      <div id='content'>
-        <Router>
-          <Header />
+      <Router>
+        <Header />
+        <Container className='page-content'>
           <Switch>
             <Route exact path="/" component={Home} />
 
@@ -48,21 +59,32 @@ export class App extends Component {
             <Route
               path="/dogshow/:id"
               render={(props) => {
-                let id = props.match.params.id
-                let dog = this.state.dogs.find(dogObj => dogObj.id === +id)
+                const id = props.match.params.id
+                const dog = this.state.dogs.find(dogObj => dogObj.id === +id)
                 return <DogShow dog={dog} />
               }}
             />
 
-            <Route path="/dognew" render={(props) => <DogNew createNewDog={this.createNewDog} />} />
+            <Route
+              path="/dognew"
+              render={(props) =>
+                <DogNew createNewDog={this.createNewDog} />}
+            />
 
-            <Route path="/dogedit" component={DogEdit} />
+            <Route
+              path="/dogedit/:id"
+              render={(props) => {
+                const id = props.match.params.id
+                const dog = this.state.dogs.find(dogObj => dogObj.id === +id)
+                return <DogEdit dog={dog} updateDog={this.updateDog} />
+              }}
+            />
 
             <Route component={NotFound} />
           </Switch>
-          <Footer />
-        </Router>
-      </div>
+        </Container>
+        <Footer />
+      </Router>
     )
   }
 }

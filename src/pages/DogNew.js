@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { Button, Form, FormGroup, Label, Input } from 'reactstrap';
+import DogForm from '../components/DogForm';
 
 export class DogNew extends Component {
   constructor(props) {
@@ -28,11 +29,20 @@ export class DogNew extends Component {
   }
 
   render() {
-    const { name, age, enjoys, image } = this.state.form
+    const { form } = this.state
     return (
       <>
         <h1>Create A New Dog</h1>
-        <Form>
+        <DogForm
+          form={form}
+          handleChange={this.handleChange}
+          handleSubmit={this.handleSubmit}
+          buttonText='Add Your Pup'
+        />
+        {
+          this.state.submitted && <Redirect to='/dogindex' />
+        }
+        {/* <Form className='form'>
           <FormGroup>
             <Label for="name">Name</Label>
             <Input
@@ -75,12 +85,15 @@ export class DogNew extends Component {
           </FormGroup>
           <Button
             color='dark'
+            className='submit-btn'
             onClick={this.handleSubmit}
           >
             Add Your Pup
           </Button>
-          {this.state.submitted && <Redirect to='/dogindex' />}
-        </Form>
+          {
+            this.state.submitted && <Redirect to='/dogindex' />
+          }
+        </Form> */}
       </>
     )
   }
