@@ -1,8 +1,21 @@
 import React, { Component } from 'react'
-import { NavLink } from 'react-router-dom'
+import { NavLink, Redirect } from 'react-router-dom'
 import { Button } from 'reactstrap'
 
 export class DogShow extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      deleted: false
+    }
+  }
+  handleDelete = () => {
+    this.props.deleteDog(this.props.dog.id)
+    this.setState({ deleted: true })
+  }
+
+
+
   render() {
     let { dog } = this.props
     return (
@@ -24,12 +37,20 @@ export class DogShow extends Component {
           >
             <Button
               color='dark'
-              className='update-btn'
             >
               Update Info
             </Button>
           </NavLink>
+          <Button onClick={this.handleDelete}
+            color='dark'
+          >
+            Delete Dog
+          </Button>
+
         </div>
+        {
+          this.state.deleted && <Redirect to='/dogindex' />
+        }
       </>
     )
   }

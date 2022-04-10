@@ -21,27 +21,67 @@ export class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      dogs: mockDogs
+      dogs: []
     }
   }
 
-  createNewDog = (dog) => {
-    console.log('Created a new dog', dog)
-    // this is temporary to show new dogs
-    const dogs = [...this.state.dogs]
-    dog.id = dogs.length + 1
-    this.setState({ dogs: [...dogs, dog] })
+  componentDidMount() {
+    this.readDog()
   }
 
-  updateDog = (dog, id) => {
-    console.log('Updated dog', dog, 'with id:', id)
-    // this is temporary to show that dog updates
-    const { dogs } = this.state
-    const dogIdxToUpdate = dogs.findIndex(dog => dog.id === id)
-    const newDogsArr = [...dogs]
-    newDogsArr.splice(dogIdxToUpdate, 1, { ...dog, id: id })
-    this.setState({ dogs: newDogsArr })
+  createNewDog = (newDog) => {
+    // fetch(argument1, argument2)
+    fetch("http://localhost:3000/dogs", {
+      // converting an object to a string
+      body: JSON.stringify(newDog),
+      // specify the info being sent in JSON and the info returning should be JSON
+      headers: {
+        "Content-Type": "application/json"
+      },
+      // HTTP verb so the correct endpoint is invoked on the server
+      method: "POST"
+    })
+      .then(response => response.json())
+      .then(payload => this.readDog())
   }
+
+  readDog = () => {
+    fetch("http://localhost:3000/dogs")
+      .then(response => response.json())
+      .then(payload => this.setState({ dogs: payload }))
+      .catch(errors => console.log("Dog Read Errors", errors))
+  }
+
+  updateDog = (updatedDog, id) => {
+    fetch(`http://localhost:3000/dogs/${id}`, {
+      // converting an object to a string
+      body: JSON.stringify(updatedDog),
+      // specify the info being sent in JSON and the info returning should be JSON
+      headers: {
+        "Content-Type": "application/json"
+      },
+      // HTTP verb so the correct endpoint is invoked on the server
+      method: "PATCH"
+    })
+      .then(response => response.json())
+      .then(payload => this.readDog())
+  }
+
+  deleteDog = (id) => {
+    fetch(`http://localhost:3000/dogs/${id}`, {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "DELETE"
+    })
+      .then(response => response.json())
+      .then(payload => this.readDog())
+  }
+
+
+
+
+
 
   render() {
     return (
@@ -61,7 +101,9 @@ export class App extends Component {
               render={(props) => {
                 const id = props.match.params.id
                 const dog = this.state.dogs.find(dogObj => dogObj.id === +id)
-                return <DogShow dog={dog} />
+                return <DogShow dog={dog}
+                  deleteDog={this.deleteDog}
+                />
               }}
             />
 
