@@ -117,30 +117,6 @@ a:hover {
   }
 }
 
-/* @media screen and (max-width: 1200px) {
-  .swipe-card {
-    height: 50vw;
-  }
-}
-
-@media screen and (max-width: 1000px) {
-  .swipe-card {
-    height: 60vw;
-  }
-}
-
-@media screen and (max-width: 800px) {
-  .swipe-card {
-    height: 70vw;
-  }
-}
-
-@media screen and (max-width: 600px) {
-  .swipe-card {
-    height: 80vw;
-  }
-} */
-
 /* Profile */
 .profile-content {
   display: flex;
@@ -168,7 +144,6 @@ a:hover {
 }
 
 #comments {
-  /* margin-top: 150px; */
   margin: 150px auto;
   color: white;
 }
@@ -299,4 +274,9 @@ a:hover {
 #copyright {
   position: fixed;
   bottom: 0%
+}
+
+.dog-icon {
+  width: 37px;
+  color: black;
 }

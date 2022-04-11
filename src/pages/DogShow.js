@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 import { FaRegTrashAlt } from 'react-icons/fa'
-import { BiCommentEdit } from 'react-icons/bi'
 import { NavLink, Redirect } from 'react-router-dom'
 import { Button, Card, CardBody, CardFooter, CardText, Form, FormGroup, Input, Label } from 'reactstrap'
 
@@ -9,13 +8,17 @@ export class DogShow extends Component {
     super(props)
     this.state = {
       deleted: false,
-      comment: ''
+      comment: '',
     }
   }
 
   handleDelete = () => {
     this.props.deleteDog(this.props.dog.id)
     this.setState({ deleted: true })
+  }
+
+  handleDeleteComment = (commentid) => {
+    this.props.deleteComment(commentid)
   }
 
   handleChange = (e) => {
@@ -96,8 +99,7 @@ export class DogShow extends Component {
                       {comment.review}
                     </CardText>
                     <div className='btn-wrapper'>
-                      <BiCommentEdit className='icon' />
-                      <FaRegTrashAlt className='icon' />
+                      <FaRegTrashAlt className='icon' onClick={() => this.handleDeleteComment(comment.id)} />
                     </div>
                   </CardBody>
                   <CardFooter>

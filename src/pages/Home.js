@@ -2,6 +2,7 @@ import React, { Component, createRef } from 'react'
 import { NavLink } from 'react-router-dom'
 import TinderCard from 'react-tinder-card'
 import { Button, Card, CardBody, CardFooter, CardHeader, Collapse } from 'reactstrap'
+import { GiSniffingDog } from 'react-icons/gi'
 
 export class Home extends Component {
   constructor(props) {
@@ -33,7 +34,9 @@ export class Home extends Component {
     const { dogs } = this.props
     return (
       <div className='center'>
-        <h1>Welcome to the park buds.</h1>
+        <h1>Welcome to the park buds. <img src="https://img.icons8.com/ios-filled/50/000000/fire-hydrant.png" /><img src="https://img.icons8.com/ios-glyphs/60/000000/dog-pee.png" /></h1>
+        <h2>Run Around<img className="dog-icon" src=" https://img.icons8.com/ios-glyphs/60/000000/running-away.png" /> Smell Around <GiSniffingDog className="dog-icon" /> Find The Perfect Buddy <img className="dog-icon" src="https://img.icons8.com/ios-glyphs/60/000000/dog-heart.png" />
+        </h2>
         <div
           ref={this.swipeRef}
           className='swipe-container'
