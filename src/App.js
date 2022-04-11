@@ -1,12 +1,10 @@
 import React, { Component } from 'react'
 import './App.css'
-import mockDogs from './mockDogs'
 import {
   BrowserRouter as Router,
   Route,
   Switch
 } from 'react-router-dom'
-
 import Header from './components/Header'
 import Footer from './components/Footer'
 import DogEdit from './pages/DogEdit'
@@ -21,26 +19,82 @@ export class App extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      dogs: mockDogs
+      dogs: []
     }
   }
 
-  createNewDog = (dog) => {
-    console.log('Created a new dog', dog)
-    // this is temporary to show new dogs
-    const dogs = [...this.state.dogs]
-    dog.id = dogs.length + 1
-    this.setState({ dogs: [...dogs, dog] })
+  componentDidMount() {
+    this.readDog()
   }
 
-  updateDog = (dog, id) => {
-    console.log('Updated dog', dog, 'with id:', id)
-    // this is temporary to show that dog updates
-    const { dogs } = this.state
-    const dogIdxToUpdate = dogs.findIndex(dog => dog.id === id)
-    const newDogsArr = [...dogs]
-    newDogsArr.splice(dogIdxToUpdate, 1, { ...dog, id: id })
-    this.setState({ dogs: newDogsArr })
+  createNewDog = (newDog) => {
+    fetch("http://localhost:3000/dogs", {
+      body: JSON.stringify(newDog),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST"
+    })
+      .then(response => response.json())
+      .then(payload => this.readDog())
+      .catch(errors => console.log(errors))
+  }
+
+  readDog = () => {
+    fetch("http://localhost:3000/dogs")
+      .then(response => response.json())
+      .then(payload => this.setState({ dogs: payload }))
+      .catch(errors => console.log(errors))
+  }
+
+  updateDog = (updatedDog, id) => {
+    fetch(`http://localhost:3000/dogs/${id}`, {
+      body: JSON.stringify(updatedDog),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "PATCH"
+    })
+      .then(response => response.json())
+      .then(payload => this.readDog())
+      .catch(errors => console.log(errors))
+  }
+
+  deleteDog = (id) => {
+    fetch(`http://localhost:3000/dogs/${id}`, {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "DELETE"
+    })
+      .then(response => response.json())
+      .then(payload => this.readDog())
+      .catch(errors => console.log(errors))
+  }
+
+  createComment = (comment) => {
+    fetch('http://localhost:3000/comments', {
+      body: JSON.stringify(comment),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST"
+    })
+      .then(response => response.json())
+      .then(payload => this.readDog())
+      .catch(err => console.error(err))
+  }
+
+  deleteComment = (id) => {
+    fetch(`http://localhost:3000/comments/${id}`, {
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "DELETE"
+    })
+      .then(response => response.json())
+      .then(payload => this.readDog())
+      .catch(errors => console.log(errors))
   }
 
   render() {
@@ -49,7 +103,11 @@ export class App extends Component {
         <Header />
         <Container className='page-content'>
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route
+              exact
+              path="/"
+              render={(props) => <Home dogs={this.state.dogs} />}
+            />
 
             <Route
               path="/dogindex"
@@ -61,7 +119,12 @@ export class App extends Component {
               render={(props) => {
                 const id = props.match.params.id
                 const dog = this.state.dogs.find(dogObj => dogObj.id === +id)
-                return <DogShow dog={dog} />
+                return <DogShow
+                  dog={dog}
+                  createComment={this.createComment}
+                  deleteDog={this.deleteDog}
+                  deleteComment={this.deleteComment}
+                />
               }}
             />
 
