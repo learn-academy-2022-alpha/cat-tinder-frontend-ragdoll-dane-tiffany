@@ -43,13 +43,14 @@ export class App extends Component {
     })
       .then(response => response.json())
       .then(payload => this.readDog())
+      .catch(errors => console.log(errors))
   }
 
   readDog = () => {
     fetch("http://localhost:3000/dogs")
       .then(response => response.json())
       .then(payload => this.setState({ dogs: payload }))
-      .catch(errors => console.log("Dog Read Errors", errors))
+      .catch(errors => console.log(errors))
   }
 
   updateDog = (updatedDog, id) => {
@@ -65,6 +66,7 @@ export class App extends Component {
     })
       .then(response => response.json())
       .then(payload => this.readDog())
+      .catch(errors => console.log(errors))
   }
 
   deleteDog = (id) => {
@@ -76,12 +78,21 @@ export class App extends Component {
     })
       .then(response => response.json())
       .then(payload => this.readDog())
+      .catch(errors => console.log(errors))
   }
 
-
-
-
-
+  createComment = (comment) => {
+    fetch('http://localhost:3000/comments', {
+      body: JSON.stringify(comment),
+      headers: {
+        "Content-Type": "application/json"
+      },
+      method: "POST"
+    })
+      .then(response => response.json())
+      .then(payload => this.readDog())
+      .catch(err => console.error(err))
+  }
 
   render() {
     return (
@@ -89,7 +100,11 @@ export class App extends Component {
         <Header />
         <Container className='page-content'>
           <Switch>
-            <Route exact path="/" component={Home} />
+            <Route
+              exact
+              path="/"
+              render={(props) => <Home dogs={this.state.dogs} />}
+            />
 
             <Route
               path="/dogindex"
@@ -101,7 +116,9 @@ export class App extends Component {
               render={(props) => {
                 const id = props.match.params.id
                 const dog = this.state.dogs.find(dogObj => dogObj.id === +id)
-                return <DogShow dog={dog}
+                return <DogShow
+                  dog={dog}
+                  createComment={this.createComment}
                   deleteDog={this.deleteDog}
                 />
               }}
